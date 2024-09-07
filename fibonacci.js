@@ -26,17 +26,36 @@ console.log(iteration);
 // Recursion
 
 function fibRecursion(num) {
-  if (num <= 0) return [];
-  if (num === 1) return [0];
-  if (num === 2) return [0, 1];
+  console.log(`fibRecursion(${num}) called.`);
+
+  if (num <= 0) {
+    console.log(`Base case fibRecursion(0) => []`);
+    return [];
+  }
+
+  if (num === 1) {
+    console.log(`Base case fibRecursion(1) => [0]`);
+    return [0];
+  }
+
+  if (num === 2) {
+    console.log(`Base case fibRecursion(2) => [0, 1]`);
+    return [0, 1];
+  }
 
   let sequence = fibRecursion(num - 1);
 
-  sequence.push(sequence[sequence.length - 1] + sequence[sequence.length - 2]);
+  const nextValue = sequence[sequence.length - 1] + sequence[sequence.length - 2];
+
+  console.log(`Appending ${nextValue} to the sequence: [${sequence}]`);
+
+  sequence.push(nextValue);
+
+  console.log(`Returning sequence from fibRecursion(${num}): [${sequence}]`);
 
   return sequence;
 }
 
 const recursion = fibRecursion(8);
 
-console.log(recursion);
+console.log("Final sequence:", recursion);
